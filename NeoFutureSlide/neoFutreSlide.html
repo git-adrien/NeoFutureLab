@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab Neo Futur</title>
+<style>
+@keyframes grain{0%,100%{transform:translate(0,0);}5%{transform:translate(-5%,-10%);}15%{transform:translate(-15%,5%);}25%{transform:translate(7%,-25%);}35%{transform:translate(-5%,25%);}50%{transform:translate(-15%,10%);}65%{transform:translate(15%,0%);}75%{transform:translate(0%,15%);}85%{transform:translate(3%,35%);}95%{transform:translate(-10%,10%);}}
+body{padding:0;margin:0;background-color:#FFA7E3;overflow-x:hidden;}
+.noise{width:100%;height:100%;}.noise:after{animation:grain 8s steps(10) infinite;background-image:url("./noise.webp");content:"";height:300%;left:-50%;opacity:0.3;position:fixed;top:-100%;width:300%;}
+.container{width:100vw;height:300vh;display:flex;justify-content:center;position:absolute;}
+.overContainer{position:absolute;display:flex;justify-content:center;align-items:center;height:100vh;width:100vw;}.overTitle{position:fixed;width:66%;}.under{z-index:1;}.uper{z-index:3;}
+.futurImg{z-index:2;margin-top:100vh;height:50vh;width:50vw;}.futurImg img{border-radius:10px;height:100%;width:100%;object-fit:cover;}
+</style>
+</head>
+<body>
+<div class="noise">
+<div class="overContainer under"><img class="overTitle" src="./Neo future2.svg"></div>
+<container>
+<div class="futurImg"><img src="./neofuture.webp" alt=""></div>
+</container>
+<div class="overContainer uper"><img class="overTitle" src="./Neo future Outline2.svg"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+<script>
+var images = document.querySelectorAll('.futurImg');
+images.forEach(function(img) {img.initialWidth = img.offsetWidth; img.initialHeight = img.offsetHeight;});
+window.addEventListener('scroll', function() {var scroll = window.scrollY;images.forEach(function(img) {var newWidth = img.initialWidth + (scroll * 0.2);var newHeight = img.initialHeight + (scroll * 0.1);img.style.width = newWidth + 'px';img.style.height = newHeight + 'px';});});
+</script>
+<script>
+const lenis = new Lenis({duration: 1,easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),direction: "vertical",gestureDirection: "vertical",smooth: true,smoothTouch: false,touchMultiplier: 2,});
+function raf(time) {lenis.raf(time);requestAnimationFrame(raf);}
+requestAnimationFrame(raf);
+</script>
+</body>
+</html>
